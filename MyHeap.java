@@ -27,7 +27,7 @@ public class MyHeap{
           else{ //if right child is the biggest
             data[index] = data[idx_b]; //swap
             data[idx_b] = temp;
-            index = idx_b; //replace index 
+            index = idx_b; //replace index
           }
         }
       }
@@ -39,14 +39,30 @@ public class MyHeap{
   - precondition: index is between 0 and data.length-1 inclusive.
   */
   private static void pushUp(int[] data, int index){
-
+    boolean sorted = false; //keeps track of whether child is in the right place (i.e. less than parent)
+    while (!sorted){ //while not in the right place
+      if (index == 0) sorted = true; //if no parent, then terminate loop
+      else{
+        int idx_parent = (index - 1) / 2;//parent
+        int temp = data[index]; //temporary storage for data[index], to be used for swap
+        if (temp > data[idx_parent]){ //if child is greater than parent, perform swap
+          data[index] = data[idx_parent]; //swap
+          data[idx_parent] = temp;
+          index = idx_parent; //replace index
+        }
+        else sorted = true; //if child is less than or equal to parent, terminate loop
+      }
+    }
   }
 
   /*
   - convert the array into a valid heap. [ should be O(n) ]
   */
   public static void heapify(int[] data){
-
+    int row = (int)(Math.log(data.length)/Math.log(2)); //takes the log base 2 of the data length, outputs index of second to last row of heap
+    for (int i = (int)Math.pow(2, row) - 2; i >= 0; i--){ //starting the right most child on the second to last row of the heap
+      pushDown(data, data.length, i); //push down children
+    }
   }
 
   /*
