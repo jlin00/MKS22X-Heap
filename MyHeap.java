@@ -107,12 +107,12 @@ public class MyHeap{
           if(!Arrays.equals(data1,data2)){
             System.out.println("FAIL TO SORT!");
             System.exit(0);
-       }
-     }
-     System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
-   }
-   System.out.println();
- }
-}
+          }
+        }
+        System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
+      }
+      System.out.println();
+    }
+  }
 
 }
