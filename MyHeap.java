@@ -69,7 +69,13 @@ public class MyHeap{
   - sort the array by converting it into a heap then removing the largest value n-1 times. [ should be O(nlogn) ]
   */
   public static void heapsort(int[] data){
-
+    heapify(data); //first, turn data into a heap
+    for (int i = data.length - 1; i >= 0; i--){
+      int temp = data[0]; //first element, also the max
+      data[0] = data[i]; //swap with last element of heap
+      data[i] = temp;
+      pushDown(data, i, 0); //pushdown the top element, size of the heap is equal to index 
+    }
   }
 
   public static void main(String[] args){
